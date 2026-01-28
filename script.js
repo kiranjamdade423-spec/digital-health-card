@@ -1,5 +1,4 @@
 function generateCard() {
-
   const severity = document.getElementById("severity").value;
   const structureId = document.getElementById("structureId").value;
   const location = document.getElementById("location").value;
@@ -11,50 +10,27 @@ function generateCard() {
     return;
   }
 
-  let status = "";
-  let priority = "";
-  let color = "";
-  let score = 0;
+  let status = "", priority = "", color = "", score = 0;
 
-  if (severity === "minor") {
-    status = "SAFE CONDITION";
-    priority = "Routine Monitoring Recommended";
-    color = "green";
-    score = 85;
-  } 
-  else if (severity === "moderate") {
-    status = "WARNING CONDITION";
-    priority = "Maintenance Required Soon";
-    color = "orange";
-    score = 55;
-  } 
-  else {
-    status = "DANGEROUS CONDITION";
-    priority = "Immediate Repair Mandatory";
-    color = "red";
-    score = 25;
-  }
+  if (severity === "minor") { status="SAFE"; priority="Routine Monitoring"; color="green"; score=85; }
+  else if (severity === "moderate") { status="WARNING"; priority="Maintenance Required Soon"; color="orange"; score=55; }
+  else { status="DANGEROUS"; priority="Immediate Repair Required"; color="red"; score=25; }
 
-  document.getElementById("healthStatus").innerText = status;
+  document.getElementById("healthStatus").innerText = status + " CONDITION";
   document.getElementById("healthStatus").style.color = color;
-  document.getElementById("priority").innerText = priority;
-  document.getElementById("score").innerText = "Safety Index: " + score + " / 100";
+  document.getElementById("priority").innerText = "Priority: " + priority;
+  document.getElementById("score").innerText = "Safety Index: " + score + "/100";
 
   const badge = document.getElementById("badge");
-  badge.innerText = status.split(" ")[0];
+  badge.innerText = status;
   badge.style.background = color;
-  badge.style.color = "white";
 
   document.getElementById("details").innerText =
-    "Structure ID: " + structureId +
-    " | Location: " + location +
-    " | Inspector: " + inspector;
+    "Structure ID: " + structureId + " | Location: " + location + " | Inspector: " + inspector;
 
   if (imageInput.files.length > 0) {
     const reader = new FileReader();
-    reader.onload = function(e) {
-      document.getElementById("previewImage").src = e.target.result;
-    };
+    reader.onload = function(e) { document.getElementById("previewImage").src = e.target.result; };
     reader.readAsDataURL(imageInput.files[0]);
   }
 
