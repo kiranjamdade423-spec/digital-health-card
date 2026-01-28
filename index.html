@@ -1,52 +1,62 @@
-<div class="header">
-  <h1>National Infrastructure Safety Dashboard</h1>
-  <p>Digital Health Card System for Roads & Bridges</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infrastructure Safety Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Safety Logo">
+      <h1>National Infrastructure Safety Dashboard</h1>
+    </div>
+    <p>Digital Health Card System for Roads & Bridges</p>
+  </header>
 
-<div class="main">
+  <main>
+    <section class="input-panel">
+      <h2>Inspection Input</h2>
+      <label>Upload Image</label>
+      <input type="file" id="imageInput">
 
-  <div class="panel">
-    <h2>Inspection Input</h2>
+      <label>Structure ID</label>
+      <input type="text" id="structureId" placeholder="BR-101 / RD-56">
 
-    <label>Upload Inspection Image</label>
-    <input type="file" id="imageInput">
+      <label>Location</label>
+      <input type="text" id="location" placeholder="City / District">
 
-    <label>Structure ID</label>
-    <input type="text" id="structureId" placeholder="BR-102 / RD-56">
+      <label>Inspector Name</label>
+      <input type="text" id="inspector" placeholder="Authorized Engineer">
 
-    <label>Location</label>
-    <input type="text" id="location" placeholder="City / District">
+      <label>Damage Severity</label>
+      <select id="severity">
+        <option value="">Select</option>
+        <option value="minor">Minor Damage</option>
+        <option value="moderate">Moderate Damage</option>
+        <option value="severe">Severe Damage</option>
+      </select>
 
-    <label>Inspector Name</label>
-    <input type="text" id="inspector" placeholder="Authorized Engineer">
+      <button onclick="generateCard()">Generate Digital Health Card</button>
+    </section>
 
-    <label>Observed Damage Severity</label>
-    <select id="severity">
-      <option value="">Select Severity</option>
-      <option value="minor">Minor Damage</option>
-      <option value="moderate">Moderate Damage</option>
-      <option value="severe">Severe Damage</option>
-    </select>
+    <section class="output-panel" id="outputCard">
+      <h2>Digital Health Card</h2>
+      <div class="badge" id="badge">SAFE</div>
+      <img id="previewImage" alt="Structure Image">
+      <p class="status" id="healthStatus"></p>
+      <p class="score" id="score"></p>
+      <p class="priority" id="priority"></p>
+      <div class="details" id="details"></div>
+      <p class="note">This assessment supports preventive maintenance and public safety decisions.</p>
+    </section>
+  </main>
 
-    <button onclick="generateCard()">Generate Digital Health Card</button>
-  </div>
+  <footer>
+    &copy; 2026 National Infrastructure Safety Dashboard
+  </footer>
 
-  <div class="panel output" id="outputCard">
-    <h2>Infrastructure Health Card</h2>
-
-    <div class="badge" id="badge">SAFE</div>
-
-    <img id="previewImage">
-
-    <p class="status" id="healthStatus"></p>
-    <p class="score" id="score"></p>
-    <p class="priority" id="priority"></p>
-
-    <div class="details" id="details"></div>
-
-    <p class="note">
-      This digital assessment supports preventive maintenance and public safety decisions.
-    </p>
-  </div>
-
-</div>
+  <script src="script.js"></script>
+</body>
+</html>
