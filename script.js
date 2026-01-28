@@ -1,38 +1,43 @@
-function generateCard() {
-  const severity = document.getElementById("severity").value;
-  const structureId = document.getElementById("structureId").value;
-  const location = document.getElementById("location").value;
-  const inspector = document.getElementById("inspector").value;
-  const imageInput = document.getElementById("imageInput");
+// Get elements
+const fileInput = document.querySelector("input[type='file']");
+const button = document.querySelector("button");
 
-  if (!severity || !structureId || !location || !inspector) {
-    alert("Please complete all inspection details");
-    return;
+// Create output section
+const output = document.createElement("div");
+output.style.marginTop = "20px";
+output.style.padding = "15px";
+output.style.borderRadius = "10px";
+output.style.display = "none";
+output.style.background = "#fee2e2";
+output.style.color = "#7f1d1d";
+document.querySelector(".card").appendChild(output);
+
+// Image preview
+fileInput.addEventListener("change", function () {
+  const file = this.files[0];
+  if (file) {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    img.style.width = "100%";
+    img.style.marginTop = "10px";
+    img.style.borderRadius = "8px";
+
+    // Remove old preview if exists
+    const oldImg = document.querySelector(".card img");
+    if (oldImg) oldImg.remove();
+
+    document.querySelector(".card").appendChild(img);
   }
+});
 
-  let status = "", priority = "", color = "", score = 0;
+// Button click action
+button.addEventListener("click", function () {
+  output.style.display = "block";
 
-  if (severity === "minor") { status="SAFE"; priority="Routine Monitoring"; color="green"; score=85; }
-  else if (severity === "moderate") { status="WARNING"; priority="Maintenance Required Soon"; color="orange"; score=55; }
-  else { status="DANGEROUS"; priority="Immediate Repair Required"; color="red"; score=25; }
-
-  document.getElementById("healthStatus").innerText = status + " CONDITION";
-  document.getElementById("healthStatus").style.color = color;
-  document.getElementById("priority").innerText = "Priority: " + priority;
-  document.getElementById("score").innerText = "Safety Index: " + score + "/100";
-
-  const badge = document.getElementById("badge");
-  badge.innerText = status;
-  badge.style.background = color;
-
-  document.getElementById("details").innerText =
-    "Structure ID: " + structureId + " | Location: " + location + " | Inspector: " + inspector;
-
-  if (imageInput.files.length > 0) {
-    const reader = new FileReader();
-    reader.onload = function(e) { document.getElementById("previewImage").src = e.target.result; };
-    reader.readAsDataURL(imageInput.files[0]);
-  }
-
-  document.getElementById("outputCard").style.display = "block";
-}
+  output.innerHTML = `
+    <h3>🚨 Digital Health Card Generated</h3>
+    <p><b>Status:</b> Dangerous Condition</p>
+    <p><b>Safety Index:</b> 25 / 100</p>
+    <p><b>Recommended Action:</b> Immediate Repair Mandatory</p>
+  `;
+});
