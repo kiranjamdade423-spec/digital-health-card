@@ -1,0 +1,52 @@
+<div class="header">
+  <h1>National Infrastructure Safety Dashboard</h1>
+  <p>Digital Health Card System for Roads & Bridges</p>
+</div>
+
+<div class="main">
+
+  <div class="panel">
+    <h2>Inspection Input</h2>
+
+    <label>Upload Inspection Image</label>
+    <input type="file" id="imageInput">
+
+    <label>Structure ID</label>
+    <input type="text" id="structureId" placeholder="BR-102 / RD-56">
+
+    <label>Location</label>
+    <input type="text" id="location" placeholder="City / District">
+
+    <label>Inspector Name</label>
+    <input type="text" id="inspector" placeholder="Authorized Engineer">
+
+    <label>Observed Damage Severity</label>
+    <select id="severity">
+      <option value="">Select Severity</option>
+      <option value="minor">Minor Damage</option>
+      <option value="moderate">Moderate Damage</option>
+      <option value="severe">Severe Damage</option>
+    </select>
+
+    <button onclick="generateCard()">Generate Digital Health Card</button>
+  </div>
+
+  <div class="panel output" id="outputCard">
+    <h2>Infrastructure Health Card</h2>
+
+    <div class="badge" id="badge">SAFE</div>
+
+    <img id="previewImage">
+
+    <p class="status" id="healthStatus"></p>
+    <p class="score" id="score"></p>
+    <p class="priority" id="priority"></p>
+
+    <div class="details" id="details"></div>
+
+    <p class="note">
+      This digital assessment supports preventive maintenance and public safety decisions.
+    </p>
+  </div>
+
+</div>
